@@ -23,10 +23,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        \Blade::if('Actived', function() {
+        \Blade::if('Actived', function($user) {
             // “auth” es el sistema de autenticación que estamos utilizando
                 // y “check” nos dice si el usuario está o no autentificado
-            return auth()->check();
+            if($user->actived == 0){
+                return false;
+            }
+            else{
+                return true;
+            }
     });
 }
 

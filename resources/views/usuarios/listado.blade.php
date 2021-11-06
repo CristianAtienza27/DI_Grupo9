@@ -1,6 +1,7 @@
 @extends('layouts.lte')
 
 @section('content')
+
 <div class="row">
         <div class="col-xs-12">
           <div class="box">
@@ -9,7 +10,7 @@
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <table id="example1" class="table table-bordered table-striped">
+              <table id="datatable" class="table table-bordered table-striped">
               <thead>
                 <tr>
                   <th>Nombre</th>
@@ -24,40 +25,41 @@
                     <td>{{ $user-> firstname }}</td>
                     <td>{{ $user-> secondname }}</td>
                     <td>{{ $user-> email }}</td>
-                    @Actived()
+
+                    @Actived($user)
                     <td>
-                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" title="Activar este registro" class="disabled">
-                                        <i class="fa fa-check-circle-o text-green"></i>
+                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" disabled="true" class="btn btn-primary" title="Activar este registro">Activar
                       </a>
-                      <a href="" title="Desactivar este registro">
-                                        <i class="fa fa-times-circle text-danger"></i>
-                      </a>
-                    </td>
-                    <td>
-                      <a href="/usuarios/{{$user->id}}/edit" class="btn-accion-tabla tooltipsC" title="Editar este registro">
-                        <i class="fa fa-fw fa-pencil"></i>
-                      </a>
-                      <a href="" title="Eliminar este registro">
-                                        <i class="fa fa-trash-o text-danger"></i>
+                      <a href="{{ url('/usuarios/desactivate/' . $user->id) }}" class="btn btn-primary" title="Desactivar este registro">Desactivar
                       </a>
                     </td>
                     @else
-                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" title="Activar este registro">
-                                        <i class="fa fa-check-circle-o text-green"></i>
-                      </a>
-                      <a href="" title="Desactivar este registro">
-                                        <i class="fa fa-times-circle text-danger"></i>
-                      </a>
-                    </td>
                     <td>
-                      <a href="/usuarios/{{$user->id}}/edit" class="btn-accion-tabla tooltipsC" title="Editar este registro">
-                        <i class="fa fa-fw fa-pencil"></i>
+                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" class="btn btn-primary" title="Activar este registro">Activar
                       </a>
-                      <a href="" title="Eliminar este registro">
-                                        <i class="fa fa-trash-o text-danger"></i>
+                      <a href="{{ url('/usuarios/desactivate/' . $user->id) }}" class="btn btn-primary" disabled="true" title="Desactivar este registro">Desactivar
                       </a>
                     </td>
                     @endActived
+                    <td>
+                    <a href="/usuarios/{{$user->id}}/edit" class="btn btn-warning" title="Editar este registro">Editar
+                      </a>
+                    <a href="/usuarios/{{$user->id}}/softdelete" title="Eliminar este registro" class="btn btn-danger">Eliminar
+                      </a>
+                    <!--<button type="button" class="btn btn-danger" onClick="return ConfirmDelete">Eliminar</button>-->
+                    </td>
+                    <!--<td>
+                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" class="btn btn-primary" title="Activar este registro">Activar
+                      </a>
+                      <a href="" class="btn btn-primary" disabled="true" title="Desactivar este registro">Desactivar
+                      </a>
+                    </td>
+                    <td>
+                      <a href="/usuarios/{{$user->id}}/edit" class="btn btn-primary" title="Editar este registro">Editar
+                      </a>
+                      <a href="" title="Eliminar este registro" class="btn btn-primary">Eliminar
+                      </a>
+                    </td>-->
                 </tr>
                 @endforeach
 
@@ -71,5 +73,28 @@
         <!-- /.col -->
       </div>
 @endsection
+
+<!--<script>
+  $(document).ready( function() ){
+    $('#datatable'.Datatable();
+
+    $('#datatable').on('click','.deletebtn', function () {
+
+      $tr = $(this).closest('tr');
+
+      var user = $tr.children("td").map(function() {
+        return $(this).text();
+      }).get();
+
+      $('#delete_user_id').val(user[0]);
+
+      $('#delete_modal_form').attr('action','/usuarios/' + user[0]);
+
+      $('#deletemodalpop').modal('show');
+
+    });
+    
+  });
+</script>-->
 
   

@@ -9,7 +9,7 @@ class Companies extends Model
     protected $table = 'companies';
 
     protected $fillable = [
-        'name', 'address','city','cif','email','phone',
+        'id','name', 'address','city','cif','email','phone',
         'del_term_id','transport_id','payment_term_id',
         'bank_entity_id','discount_id','deleted',
     ];

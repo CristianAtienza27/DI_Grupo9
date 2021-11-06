@@ -40,7 +40,12 @@
                   <label for="inputCompany" class="col-sm-2 control-label">Compañía</label>
 
                   <div class="col-sm-10">
-                    <input type="number" placeholder="Compañía" class="form-control" name="company_id" required autocomplete="company_id">
+                    <select id="company_id" class="form-control select2" name="company_id" style="width: 100%;">
+                    @foreach($companies as $company)
+                        <option>{{$company->name}}</option>
+                    @endforeach
+                    </select>
+                    <!--<input type="number" placeholder="Compañía" class="form-control" name="company_id" required autocomplete="company_id">-->
                   </div>
                 </div>
 

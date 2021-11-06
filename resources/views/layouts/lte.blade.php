@@ -24,6 +24,20 @@
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
+
+<script type="text/javascript">
+  function ConfirmDelete(){
+    var respuesta = confirm("¿Estas seguro que desea eliminar al usuario?")
+    
+    if(respuesta == true){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+</script>
+
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
@@ -118,10 +132,11 @@
 <script src="{{asset('assets/dist/js/demo.js') }}"></script>
 
 <!-- page script -->
+
 <script>
   $(function () {
     $('#example1').DataTable()
-    $('#example2').DataTable({
+    $('#datatable').DataTable({
       'paging'      : true,
       'lengthChange': false,
       'searching'   : false,
@@ -131,5 +146,6 @@
     })
 })
 </script>
+
 </body>
 </html>

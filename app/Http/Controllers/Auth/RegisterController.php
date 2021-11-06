@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Mail;
+use App\Companies;
 
 class RegisterController extends Controller
 {
@@ -41,6 +42,11 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+    public function index(){
+        $companies = Companies::all();
+        return view('auth.register',compact('companies'));
+    }
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -66,11 +72,12 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         $data['code'] = str_random(25);
+        $company = Companies::where('name', $data['company_id'])->first();
 
         $user = User::create([
             'firstname' => $data['firstname'],
             'secondname' => $data['secondname'],
-            'company_id' => $data['company_id'],
+            'company_id' => $company['id'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'code' => $data['code'],

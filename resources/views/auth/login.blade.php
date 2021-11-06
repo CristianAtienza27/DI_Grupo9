@@ -35,7 +35,7 @@
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" class="btn btn-block btn-info">Login</button>
-                  <a href="/register" class="btn btn-block btn-primary">Registrarse</a>
+                  <a href="{{ url('/register/form') }}" class="btn btn-block btn-primary">Registrarse</a>
                     <div class="checkbox">
                       <label>
                         <input type="checkbox"> Recuérdame

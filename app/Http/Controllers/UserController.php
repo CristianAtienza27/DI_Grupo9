@@ -22,7 +22,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::where('deleted','=',0)->get();
         return view('usuarios.listado', compact('users'));
     }
 
@@ -95,6 +95,21 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function softDelete($id){
+
+        $user = User::where('id', $id)->first();
+
+        /* Si no existe, redirige a la ruta principal */
+        if (! $user)
+            return redirect('/') ->with('message','El usuario no existe o ya ha sido eliminado');
+
+        $user->deleted = 1;
+        $user->save();
+
+        return redirect('/usuarios')->with('message','Usuario eliminado');
+
+    }
+
     public function destroy($id)
     {
         //
@@ -126,11 +141,26 @@ class UserController extends Controller
 
         /* Si no existe, redirige a la ruta principal */
         if (! $user)
-            return redirect('/') ->with('message','El usuario no existe o ya ha sido eliminado');
+            return redirect('/') ->with('message','El usuario no existe');
 
         $user->actived = 1;
         $user->save();
 
         return redirect('/usuarios')->with('message','Usuario activado');
+    }
+
+    public function desactivate($id){
+
+        $user = User::where('id', $id)->first();
+
+        /* Si no existe, redirige a la ruta principal */
+        if (! $user)
+            return redirect('/') ->with('message','El usuario no existe');
+
+        $user->actived = 0;
+        $user->save();
+
+        return redirect('/usuarios')->with('message','Usuario desactivado');
+
     }
 }

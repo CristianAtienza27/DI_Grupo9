@@ -23,4 +23,9 @@ Route::resource('/usuarios','UserController');
 
 Route::get('/usuarios/activate/{id}','UserController@activate');
 
+Route::get('/usuarios/desactivate/{id}','UserController@desactivate');
+
+Route::get('/usuarios/{id}/softdelete','UserController@softDelete');
+
+Route::get('/register/form','Auth\RegisterController@index');
 #Route::get('/home', 'HomeController@index')->name('home');
