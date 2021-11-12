@@ -44,8 +44,29 @@
                     <td>
                     <a href="/usuarios/{{$user->id}}/edit" class="btn btn-warning" title="Editar este registro">Editar
                       </a>
-                    <a href="/usuarios/{{$user->id}}/softdelete" title="Eliminar este registro" class="btn btn-danger">Eliminar
+                    <a title="Eliminar este registro" data-toggle="modal" data-target="#exampleModal-{{$user->id}}" class="btn btn-danger">Eliminar
                       </a>
+                    <!-- Button trigger modal -->
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                  <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                                      </div>
+                                      <div class="modal-body">
+                                        ¿Estás seguro de eliminar al usuario {{$user->firstname}} {{$user->secondname}}?
+                                      </div>
+                                      <div class="modal-footer">
+                                        <a class="btn btn-danger"  href="/usuarios/{{$user->id}}/softdelete">Borrar</i></a>
+                                        <a data-dismiss="modal" class="btn btn-primary">Cancelar</a>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
                     <!--<button type="button" class="btn btn-danger" onClick="return ConfirmDelete">Eliminar</button>-->
                     </td>
                     <!--<td>

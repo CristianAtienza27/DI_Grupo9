@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -38,7 +39,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Cristian',
             'secondname' => 'Atienza',
             'email' => 'admin@admin.com',
-            'password' => '12345678',
+            'password' => Hash::make('12345678'),
             'actived' => 1,
             'email_confirmed' => 1]
         );

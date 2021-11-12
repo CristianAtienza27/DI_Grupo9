@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Companies;
 
 class UserController extends Controller
 {
@@ -63,7 +64,9 @@ class UserController extends Controller
     public function edit($id)
     {
         $user = User::findOrFail($id);
-        return view('usuarios.editar',compact('user'));
+        $companies = Companies::all();
+
+        return view('usuarios.editar',compact('user','companies'));
     }
 
     /**
@@ -76,12 +79,13 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $this->validateUser($request);
+        $company = Companies::where('name', $request['company_id'])->first();
 
         $user = array(
             'firstname' => $request->firstname,
             'secondname' => $request->secondname,
             'email' => $request->email,
-            'company_id' => $request->company_id,
+            'company_id' => $company['id'],
             'password' => Hash::make($request->password)
         );
 
