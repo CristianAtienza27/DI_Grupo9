@@ -80,13 +80,14 @@ class UserController extends Controller
     {
         $this->validateUser($request);
         $company = Companies::where('name', $request['company_id'])->first();
+        $usuario = User::findOrFail($id);
 
         $user = array(
             'firstname' => $request->firstname,
             'secondname' => $request->secondname,
             'email' => $request->email,
             'company_id' => $company['id'],
-            'password' => Hash::make($request->password)
+            'password' => $request->password != "" ? Hash::make($request->password) : $usuario->password,
         );
 
         User::whereId($id)->update($user);
@@ -125,7 +126,7 @@ class UserController extends Controller
             'firstname' => 'required|max:15', // forums es la tabla dónde debe ser único
             'secondname' => 'required|max:50',
             'email' => 'required|email|max:40',
-            'password' => 'required|max:191',
+            'password' => 'max:191',
             'company_id' => 'required'
         ],
         [
@@ -133,7 +134,6 @@ class UserController extends Controller
             'secondname.required' => __("El campo apellidos es obligatorio"),
             'email.required' => __("El campo email es obligatorio"),
             'email.unique' => __("El email ya existe"),
-            'password.required' => __("El campo contraseña es obligatorio"),
             'company_id.required' => __("El campo compañía es obligatorio")
         ]
         );  

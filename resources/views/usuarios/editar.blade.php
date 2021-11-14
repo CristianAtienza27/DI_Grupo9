@@ -58,7 +58,7 @@
                   <label for="inputPassword" class="col-sm-2 control-label">Contraseña</label>
 
                   <div class="col-sm-10">
-                    <input type="password" placeholder="Contraseña" class="form-control" name="password" required autocomplete="new-password">
+                    <input type="password" placeholder="Contraseña" class="form-control" name="password">
                   </div>
                 </div>
 
@@ -66,7 +66,7 @@
                   <label for="inputPassword1" class="col-sm-2 control-label">Confirmación</label>
 
                   <div class="col-sm-10">
-                  <input id="password-confirm" placeholder="Confirmación" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                  <input id="password-confirm" placeholder="Confirmación" type="password" class="form-control" name="password_confirmation">
                   </div>
                 </div>
 
