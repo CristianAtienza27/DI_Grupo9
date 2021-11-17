@@ -42,45 +42,13 @@
                     </td>
                     @endActived
                     <td>
-                    <a href="/usuarios/{{$user->id}}/edit" class="btn btn-warning" title="Editar este registro">Editar
+                    <a data-toggle="modal" data-target="#modal-default" class="btn btn-warning" title="Editar este registro">Editar
                       </a>
+                    @include('modals.forms.userEdit')
                     <a title="Eliminar este registro" data-toggle="modal" data-target="#exampleModal-{{$user->id}}" class="btn btn-danger">Eliminar
                       </a>
-                    <!-- Button trigger modal -->
-                                <!-- Modal -->
-                                <div class="modal fade" id="exampleModal-{{$user->id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                  <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                      <div class="modal-header">
-                                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                          <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
-                                      </div>
-                                      <div class="modal-body">
-                                        ¿Estás seguro de eliminar al usuario {{$user->firstname}} {{$user->secondname}}?
-                                      </div>
-                                      <div class="modal-footer">
-                                        <a class="btn btn-danger"  href="/usuarios/{{$user->id}}/softdelete">Borrar</i></a>
-                                        <a data-dismiss="modal" class="btn btn-primary">Cancelar</a>
-                                      </div>
-                                    </div>
-                                  </div>
-                                </div>
-                    <!--<button type="button" class="btn btn-danger" onClick="return ConfirmDelete">Eliminar</button>-->
+                    @include('modals.userDelete')
                     </td>
-                    <!--<td>
-                    <a href="{{ url('/usuarios/activate/' . $user->id) }}" class="btn btn-primary" title="Activar este registro">Activar
-                      </a>
-                      <a href="" class="btn btn-primary" disabled="true" title="Desactivar este registro">Desactivar
-                      </a>
-                    </td>
-                    <td>
-                      <a href="/usuarios/{{$user->id}}/edit" class="btn btn-primary" title="Editar este registro">Editar
-                      </a>
-                      <a href="" title="Eliminar este registro" class="btn btn-primary">Eliminar
-                      </a>
-                    </td>-->
                 </tr>
                 @endforeach
 

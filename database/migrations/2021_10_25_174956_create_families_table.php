@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrderLinesTable extends Migration
+class CreateFamiliesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,11 @@ class CreateOrderLinesTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_lines', function (Blueprint $table) {
+        Schema::create('families', function (Blueprint $table) {
             $table->engine = "InnoDB";
             $table->bigIncrements('id')->unique();
-            $table->unsignedbigInteger('order_id');
-            $table->foreign('order_id')->references('id')->on('orders')->onUpdate("cascade");
-            $table->string('order_line_num', 10);
-            $table->date('issue_date');
+            $table->string('name', 50);
+            $table->decimal('profit_margin',10,0);
             $table->tinyInteger('deleted');
             $table->timestamps();
         });
@@ -32,6 +30,6 @@ class CreateOrderLinesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_lines');
+        Schema::dropIfExists('families');
     }
 }

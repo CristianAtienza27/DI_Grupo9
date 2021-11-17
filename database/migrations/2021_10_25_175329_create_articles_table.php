@@ -13,7 +13,7 @@ class CreateArticlesTable extends Migration
      */
     public function up()
     {
-        Schema::create('article', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->engine="InnoDB";
             $table->bigIncrements('id')->unique();
             $table->string('name', 50);
@@ -21,11 +21,11 @@ class CreateArticlesTable extends Migration
             $table->decimal('price_min', 10,0);
             $table->decimal('price_max', 10,0);
             $table->string('color_name', 20);
-            $table->decimal('weight', 10,0);
+            $table->decimal('weight', 8,2);
             $table->string('size', 10);
             $table->unsignedbigInteger('family_id');
             $table->foreign('family_id')->references('id')->on('families')->onUpdate("cascade");
-            $table->tinyInteger('deleted');
+            $table->tinyInteger('deleted')->default(0);
             $table->timestamps();
         });
     }

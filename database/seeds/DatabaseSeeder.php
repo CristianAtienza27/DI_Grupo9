@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
         factory(\App\Bank_entity::class, 10) -> create();
         factory(\App\Discount::class, 10) -> create();
         factory(\App\Companies::class, 10) -> create();
+        factory(\App\Families::class, 10) -> create();
+        factory(\App\Articles::class, 10) -> create();
        /**factory(\App\Families::class, 10) -> create();
         factory(\App\Article::class, 10) -> create();
         factory(\App\Products::class, 10) -> create();
@@ -39,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'firstname' => 'Cristian',
             'secondname' => 'Atienza',
             'email' => 'admin@admin.com',
+            'code' => null,
             'password' => Hash::make('12345678'),
             'actived' => 1,
             'email_confirmed' => 1]
