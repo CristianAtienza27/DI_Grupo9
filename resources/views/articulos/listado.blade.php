@@ -3,12 +3,13 @@
 @section('content')
 
 <div class="row">
+@include('modals.forms.articleInsert')
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
               <h3 class="box-title">Listado de artículos</h3>
               <a data-toggle="modal" data-target="#modal-artInsert" class="btn btn-success btn-right">Añadir</a>
-              @include('modals.forms.articleInsert')
+              
             </div>
             <!-- /.box-header -->
             <div class="box-body">

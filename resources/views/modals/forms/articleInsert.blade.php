@@ -59,9 +59,10 @@
               </div>
 
               <div class="form-group">
-                  <label for="inputWeight" class="col-sm-2 control-label">Peso</label>
-
-                  <div class="col-sm-10">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Peso</b>&nbsp;&nbsp;&nbsp;<input class="rb1" value="peso" name="rb1" type="radio" id="rbsize1" checked="true">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Tamaño</b>&nbsp;&nbsp;&nbsp;<input class="rb1" value="tamaño" name="rb1" type="radio" id="rbsize1">
+                  <label for="inputWeight" class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <div class="col-sm-10" id="divPeso">
                     <select id="weight" class="form-control select2" name="weight" style="width: 100%;">
                     @foreach($peso as $p)  
                       <option>{{$p}}</option>
@@ -71,8 +72,8 @@
                   </div>
               </div>
 
-            <div class="form-group">
-                <label for="inputSize" class="col-sm-2 control-label">Tamaño</label>
+            <div id="divTamaño" class="form-group" style="display:none;">
+                <label for="inputSize" class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;&nbsp;</label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="rb" value="valorNum" name="rb" type="radio" id="rbsize1" checked="true"> Valor numérico
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="rb" value="valorSimple" name="rb" type="radio" id="rbsize2"> Valor simple
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="rb" value="valorComp" name="rb" type="radio" id="rbsize3"> Valor compuesto
@@ -124,7 +125,7 @@
                     <!--<input type="number" placeholder="Compañía" class="form-control" name="company_id" required autocomplete="company_id">-->
                   </div>
             </div>
-
+ 
             <div class="form-group">
                   <label for="inputDescription" class="col-sm-2 control-label">Descripción</label>
 
@@ -178,6 +179,22 @@
                 $("#valorSimple1").css("display", "none");
                 $("#valorNum1").css("display", "none");
                 $("#valorComp1").css("display","block");
+            }
+    });
+});
+
+$(document).ready(function(){
+        $(".rb1").click(function(evento){
+          
+            var valor = $(this).val();
+          
+            if(valor == 'peso'){
+                $("#divPeso").css("display", "block");
+                $("#divTamaño").css("display", "none");
+            }
+            else if(valor == 'tamaño'){
+                $("#divPeso").css("display", "none");
+                $("#divTamaño").css("display", "block");
             }
     });
 });

@@ -60,16 +60,21 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $family = Families::where('name',$request['family'])->first();
-        $size = '';
+        $size = null;
 
-        if($request['rb'] == 'valorNum'){
-            $size = $request['size1'];
-        }
-        else if($request['rb'] == 'valorSimple'){
-            $size = $request['size2'];
-        }
-        else if($request['rb'] == 'valorComp'){
-            $size = $request['size3'].' x '.$request['size4'];
+        if($request['rb1'] != 'peso'){
+
+            if($request['rb'] == 'valorNum'){
+                $size = $request['size1'];
+            }
+            else if($request['rb'] == 'valorSimple'){
+                $size = $request['size2'];
+            }
+            else if($request['rb'] == 'valorComp'){
+                $size = $request['size3'].' x '.$request['size4'];
+            }
+
+            $request['weight'] = null;
         }
 
         $article = Articles::create([
@@ -121,15 +126,24 @@ class ArticleController extends Controller
         $family = Families::where('name',$request['family'])->first();
         $size = '';
 
-        if($request['rb1'] == 'valorNum'.$id){
-            $size = $request['size1'];
+        dd($request);
+
+        if($request['rb2'] != 'peso'){
+
+            if($request['rb1'] == 'valorNum'.$id){
+                $size = $request['size1'];
+            }
+            else if($request['rb1'] == 'valorSimple'.$id){
+                $size = $request['size2'];
+            }
+            else if($request['rb1'] == 'valorComp'.$id){
+                $size = $request['size3'].' x '.$request['size4'];
+            }
+
+            $request['weight'] = null;
+
         }
-        else if($request['rb1'] == 'valorSimple'.$id){
-            $size = $request['size2'];
-        }
-        else if($request['rb1'] == 'valorComp'.$id){
-            $size = $request['size3'].' x '.$request['size4'];
-        }
+        
 
         $article = array(
             'name' => $request['name'],

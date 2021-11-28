@@ -42,7 +42,7 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user){
 
-        if ($user->type == 'U'){
+        if ($user->type == 'u'){
 
             if($user->email_confirmed == 1){
 

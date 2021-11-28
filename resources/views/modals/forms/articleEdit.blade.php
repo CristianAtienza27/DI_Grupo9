@@ -60,9 +60,10 @@
               </div>
 
               <div class="form-group">
-                  <label for="inputWeight" class="col-sm-2 control-label">Peso</label>
-
-                  <div class="col-sm-10">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Peso</b>&nbsp;&nbsp;&nbsp;<input class="rb2" value="peso" name="rb2" type="radio" id="rbsize1" checked="true">
+                  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Tamaño</b>&nbsp;&nbsp;&nbsp;<input class="rb2" value="tamaño" name="rb2" type="radio" id="rbsize1">
+                  <label for="inputWeight" class="col-sm-2 control-label">&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                  <div class="col-sm-10" id="divPeso1">
                     <select id="weight" class="form-control select2" name="weight" style="width: 100%;">
                     @foreach($peso as $p)  
                       <option>{{$p}}</option>
@@ -72,7 +73,7 @@
                   </div>
               </div>
 
-            <div class="form-group">
+            <div class="form-group" id="divTamaño1" style="display:none;">
                 <label for="inputSize" class="col-sm-2 control-label">Tamaño</label>
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="rb1" value="valorNum{{$article->id}}" name="rb1" type="radio" id="rbsize11" checked="true"> Valor numérico
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input class="rb1" value="valorSimple{{$article->id}}" name="rb1" type="radio" id="rbsize22"> Valor simple
@@ -166,6 +167,22 @@
                 $("#valorSimple{{$article->id}}").css("display", "none");
                 $("#valorNum{{$article->id}}").css("display", "none");
                 $("#valorComp{{$article->id}}").css("display","block");
+            }
+    });
+});
+
+$(document).ready(function(){
+        $(".rb2").click(function(evento){
+          
+            var valor = $(this).val();
+          
+            if(valor == 'peso'){
+                $("#divPeso1").css("display", "block");
+                $("#divTamaño1").css("display", "none");
+            }
+            else if(valor == 'tamaño'){
+                $("#divPeso1").css("display", "none");
+                $("#divTamaño1").css("display", "block");
             }
     });
 });
