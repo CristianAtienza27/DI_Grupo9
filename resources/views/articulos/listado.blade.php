@@ -27,7 +27,7 @@
                 </thead>
                 <tbody>
 
-                @foreach($articles as $article)
+                @forelse($articles as $article)
                 <tr>
                     <td>{{ $article-> name }}</td>
                     <td>{{ $article-> description }}</td>
@@ -42,11 +42,13 @@
                       </a>
                     @include('modals.forms.articleEdit')
                       <a data-toggle="modal" data-target="#modalArtDelete-{{$article->id}}" class="btn btn-danger" title="Eliminar este artículo">Eliminar
-                    @include('modals.articleDelete')
                       </a>
+                    @include('modals.articleDelete')
                     </td>
                 </tr>
-                @endforeach
+                @empty
+                <h3>No hay artículos para mostrar</h3>
+                @endforelse
 
                 </tbody>
               </table>

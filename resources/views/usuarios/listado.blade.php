@@ -63,27 +63,4 @@
       </div>
 @endsection
 
-<!--<script>
-  $(document).ready( function() ){
-    $('#datatable'.Datatable();
-
-    $('#datatable').on('click','.deletebtn', function () {
-
-      $tr = $(this).closest('tr');
-
-      var user = $tr.children("td").map(function() {
-        return $(this).text();
-      }).get();
-
-      $('#delete_user_id').val(user[0]);
-
-      $('#delete_modal_form').attr('action','/usuarios/' + user[0]);
-
-      $('#deletemodalpop').modal('show');
-
-    });
-    
-  });
-</script>-->
-
   

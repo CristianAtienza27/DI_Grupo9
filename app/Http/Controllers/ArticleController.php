@@ -124,11 +124,9 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $family = Families::where('name',$request['family'])->first();
-        $size = '';
+        $size = null;
 
-        dd($request);
-
-        if($request['rb2'] != 'peso'){
+        if($request['rb2'] != 'peso'.$id){
 
             if($request['rb1'] == 'valorNum'.$id){
                 $size = $request['size1'];
@@ -137,14 +135,13 @@ class ArticleController extends Controller
                 $size = $request['size2'];
             }
             else if($request['rb1'] == 'valorComp'.$id){
-                $size = $request['size3'].' x '.$request['size4'];
+                $size = $request['size3'].'x'.$request['size4'];
             }
 
             $request['weight'] = null;
 
         }
         
-
         $article = array(
             'name' => $request['name'],
             'price_min' => $request['price_min'],
