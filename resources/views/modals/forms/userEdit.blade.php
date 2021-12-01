@@ -63,7 +63,7 @@
                   </div>
               </div>
 
-              <div class="modal-footer">
+              <!-- <div class="modal-footer"> -->
             <button type="button" class="btn btn-block pull-left" data-dismiss="modal">Cancelar</button>
             <button type="submit" class="btn btn-block btn-primary">Actualizar</button>
             </div>
