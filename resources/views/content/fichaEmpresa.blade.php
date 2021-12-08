@@ -40,8 +40,8 @@
     <td colspan="2">Teléfono: {{$company->phone}}</td>
   </tr>
   <tr>
-    <td colspan="5">Plazo de entrega: {{$delivery_term->description}} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-      Descuentos: {{$discount->name}}<br>Portes: {{$transport->price}}<br>Condiciones de pago: {{$payment_terms->description}}<br>Entidad bancaria: {{$bank_entity->name}}</td>
+    <td colspan="5">Plazo de entrega: {{$company->dt_desc}} &nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+      Descuentos: {{$company->d_name}}<br>Portes: {{$company->price}}<br>Condiciones de pago: {{$company->pt_desc}}<br>Entidad bancaria: {{$company->be.name}}</td>
   </tr>
 </tbody>
 </table>

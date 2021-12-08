@@ -84,12 +84,12 @@
       </a>
     </li>
     <li>
-      <a href="/usuarios" style="{{auth()->user()->type === 'a' ? 'display:none' : '' }}">
+      <a href="/company" style="{{auth()->user()->type === 'a' ? 'display:none' : '' }}">
         <i class="fa fa-user"></i><span>{{ __('Datos Empresa') }}</span>
       </a>
     </li>
     <li>
-      <a href="/articulos" style="{{auth()->user()->type === 'a' ? 'display:none' : '' }}">
+      <a href="#" style="{{auth()->user()->type === 'a' ? 'display:none' : '' }}">
         <i class="fa fa-archive"></i><span>{{ __('Pedidos') }}</span>
       </a>
     </li>

@@ -143,17 +143,29 @@
                 <div class="form-group">
                   <div class="col-sm-offset-2 col-sm-10">
                   <button type="submit" class="btn btn-block btn-primary">Actualizar</button>
-                  <a href="{{ url('/company/ficha/'.$company->id) }}" class="btn btn-block btn-primary"><i class="fas fa-file-pdf"></i>Ver Ficha</a>
+                  <!-- <a href="{{ url('/company/ficha/'.$company->id) }}" class="btn btn-block btn-primary"><i class="fas fa-file-pdf"></i>Ver Ficha</a> -->
 
                 </div>
             </div>
-</form>
+            </form>
                 </div>
               </div>
   </div>
-  <div class="col">
-    
-  </div>
+  <div class="row centrar">
+  <div class="col-md-12">
+  <div class="card-body">
+          <!-- Horizontal Form -->
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">Recursos</h3>
+              <div class="col-sm-offset-2 col-sm-10">
+              <a href="{{ url('/company/ficha/'.$company->id) }}" class="btn btn-block btn-primary"><i class="fas fa-file-pdf"></i>Ver Ficha</a>
+              </div>
+            </div>
+          </div>
+        </div>
+</div>
+</div>
 </div>
 
 @endsection

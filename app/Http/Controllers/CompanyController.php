@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use App\Companies;
 use App\User;
 use App\Delivery_terms;
 use App\Transports;
 use App\Payment_terms;
+use App\Families;
 use App\Bank_entity;
 use App\Discount;
+use App\Products;
 use PDF;
 
 class CompanyController extends Controller
@@ -107,39 +110,29 @@ class CompanyController extends Controller
         return redirect('/company')->with('message','Datos de la compañía actualizados con éxito');
     }
 
-    public function viewFicha($id) {
-        $company = Companies::find($id);
-        $delivery_term = Delivery_terms::find($company['del_term_id']);
-        $transport = Transports::find($company['transport_id']);
-        $bank_entity = Bank_Entity::find($company['bank_entity_id']);
-        $payment_terms = Payment_Terms::find($company['payment_term_id']);
-        $discount = Discount::find($company['discount_id']);
+    public function downloadResources()
+    {
+        $company = Companies::select('companies.name', 'companies.address', 'companies.city', 
+        'companies.cif', 'companies.email', 'companies.phone','delivery_terms.description as dt_desc',
+        'discount.name as d_name','transports.price','bank_entity.name as be_name','payment_terms.description as pt_desc')
+        ->join('delivery_terms', 'companies.del_term_id','=','delivery_terms.id')
+        ->join('discount','companies.discount_id','=','discount.id')
+        ->join('transports','companies.transport_id','=','transports.id')
+        ->join('bank_entity','companies.bank_entity_id','=','bank_entity.id')
+        ->join('payment_terms','companies.payment_term_id','=','payment_terms.id')
+        ->where('companies.id','=',auth()->user()->company_id)->get();
 
-        $pdf = PDF::loadView('content.fichaEmpresa', 
-        ['company' => $company,
-         'delivery_term' => $delivery_term,
-         'discount' => $discount,
-         'transport' => $transport,
-         'bank_entity' => $bank_entity,
-         'payment_terms' => $payment_terms
-        ]);
+        $products = Products::select('products.id as p_id','families.name as f_name','articles.name as a_name','articles.description as a_desc','products.price as p_price', 'articles.color_name as a_color','articles.weight as a_weight','articles.size as a_size')
+        ->join('articles','products.article_id', '=', 'articles.id')
+        ->join('families','products.family_id','=','families.id')
+        ->join('companies','products.company_id','=','companies.id')
+        ->where('products.company_id','=', auth()->user()->company_id)->get();
 
-        return $pdf->download('ficha_empresa.pdf');
-    }
+        $pdf1 = PDF::loadView('content.fichaEmpresa', ['company' => $company])
+        ->save(public_path().'/ficha_empresa.pdf');;
 
-    public function viewCatalogo($id){
-        $products = Products::where('company_id','=',$id);
-        $family = Families::find($products['family_id']);
-        $article = Articles::find($products['article_id']);
-
-        $pdf = PDF::loadView('content.catalogo', 
-        ['products' => $products,
-         'family' => $family,
-         'article' => $article
-        ]);
-
-         return $pdf->download('catalogo.pdf');
-        
+        $pdf2 = PDF::loadView('content.catalogo', ['products' => $products, 'company' => $company])
+        ->save(public_path().'/catalogo.pdf');
     }
 
     /**

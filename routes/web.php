@@ -25,7 +25,7 @@ Route::resource('/articulos','ArticleController');
 
 Route::resource('/company','CompanyController');
 
-Route::get('/company/ficha/{id}','CompanyController@viewFicha');
+Route::get('/company/ficha/{id}','CompanyController@downloadResources');
 
 Route::get('/usuarios/activate/{id}','UserController@activate');
 

@@ -8,7 +8,7 @@
     <title>Catálogo de productos</title>
 </head>
 <body>
-<table>
+<table class="table table-hover">
 <thead>
   <tr>
     <th colspan="3">Catálogo de productos</th>
@@ -26,16 +26,18 @@
     <td>Peso</td>
     <td>Tamaño</td>
   </tr>
+  @foreach($products as $p)
   <tr>
-    <td>ID</td>
-    <td>Familia</td>
-    <td>Producto</td>
-    <td>Descripción</td>
-    <td>Precio</td>
-    <td>Color</td>
-    <td>Peso</td>
-    <td>Tamaño</td>
+    <td>{{$p->p_id}}</td>
+    <td>{{$p->f_name}}</td>
+    <td>{{$p->a_name}}</td>
+    <td>{{$p->a_desc}}</td>
+    <td>{{$p->p_price}}</td>
+    <td>{{$p->a_color}}</td>
+    <td>{{$p->a_weight}}</td>
+    <td>{{$p->a_size}}</td>
   </tr>
+  @endforeach
 </tbody>
 </table>
 </body>
