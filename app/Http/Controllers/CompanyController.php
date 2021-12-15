@@ -126,8 +126,7 @@ class CompanyController extends Controller
         $pdf = PDF::loadView('content.fichaEmpresa', ['company' => $company])
         ->save(public_path('/') . 'fichaEmpresa.pdf');
         
-        return PDF::loadView('content.fichaEmpresa', ['company' => $company])
-        ->stream('fichaEmpresa.pdf');
+        return $pdf->stream('fichaEmpresa.pdf');
     }
 
     public function downloadCatalogo(){
@@ -143,25 +142,29 @@ class CompanyController extends Controller
         $pdf = PDF::loadView('content.catalogo', ['products' => $products, 'company' => $company])
         ->save(public_path('/') . 'catalogo.pdf');
 
-        return PDF::loadView('content.catalogo', ['products' => $products, 'company' => $company])
-        ->stream('catalogo.pdf');
+        return $pdf->stream('catalogo.pdf');
 
     }
 
     public function sendEmail(Request $request){
 
-        $emails = ['cristianatienza26@gmail.com','c.atienza@cesjuanpablosegundocadiz.es'];
+        $contact_persons = User::where('iscontact','=',1)->get();
+        $email = array();
+
+        foreach ($contact_persons as $contact_person){
+            array_push($email,$contact_person['email']);
+        }
+
         $files = [(public_path('/') . 'fichaEmpresa.pdf') , (public_path('/') . 'catalogo.pdf')];
 
-        foreach($files as $file){
-            if(file_exists($file)){
-                dd($file);
-                return redirect('/company')->with('message','Falta');
-            }    
+        if(!file_exists($files[0])){
+            return redirect('/company')->with('message','el PDF de la ficha de empresa no existe, asegúrate de haberlo descargado');
+        }else if(!file_exists($files[1])){
+            return redirect('/company')->with('message','el PDF del catálogo no existe, asegúrate de haberlo descargado');
         }
         
-        Mail::send('content.mensajePDFs', [], function($message) use ($emails,$files){
-            $message->to($emails)->subject('Prueba pdfs');
+        Mail::send('content.mensajePDFs', [], function($message) use ($email,$files){
+            $message->to($email)->subject('Prueba pdfs');
             foreach ($files as $file){
                 $message->attach($file);
             }
