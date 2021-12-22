@@ -76,6 +76,20 @@ class DatabaseSeeder extends Seeder
             'iscontact' => 1,
             'company_id' => 2]
         );
+
+        factory(\App\User::class)->create(
+            [
+            'firstname' => 'Raul',
+            'secondname' => 'Reyes',
+            'email' => 'raulraul@mail.com',
+            'code' => null,
+            'password' => Hash::make('1234'),
+            'actived' => 1,
+            'type' => 'u',
+            'email_confirmed' => 1,
+            'iscontact' => 1,
+            'company_id' => 3]
+        );
         // $this->call(UsersTableSeeder::class);
     }
 }
