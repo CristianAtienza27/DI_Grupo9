@@ -10,6 +10,6 @@ class Contain_art_invlines extends Model
 
     protected $fillable = [
         'article_id','invoice_line_id'
-    ]
+    ];
 
 }

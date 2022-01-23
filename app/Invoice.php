@@ -10,6 +10,6 @@ class Invoice extends Model
 
     protected $fillable = [
         'num','issue_date','delivery_note_id','deleted'
-    ]
+    ];
     
 }

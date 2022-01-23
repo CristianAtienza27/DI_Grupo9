@@ -10,6 +10,6 @@ class Delivery_note extends Model
 
     protected $fillable = [
         'num','issue_date','order_id','deleted'
-    ]
+    ];
 
 }
