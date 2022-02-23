@@ -30,7 +30,7 @@ class BasicTest extends TestCase
             'email' => 'cristian@mail.com',
             'password' => '12345678'
         ];
-    
+
         $response = $this->post('login',$credential);
         $response->assertSessionMissing('errors');
     }
@@ -91,6 +91,7 @@ class BasicTest extends TestCase
     }
 
     public function testArticleDelete(){
+        
         $this->withoutExceptionHandling();
 
         $article = factory(Articles::class)->create();
@@ -98,9 +99,9 @@ class BasicTest extends TestCase
         $response = $this->delete('/articulos/' . $article->id);
 
         //Cambiar el número '10' por el número de artículos que hay despues de eliminar este
-        $this->assertCount(10, Articles::all());
+        $this->assertCount(11, Articles::all());
 
-        $response->assertRedirect('/articulos/');
+        $response->assertRedirect('/articulos');
 
     }
 
